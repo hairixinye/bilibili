@@ -1,0 +1,40 @@
+name: Deploy Bilibili TV
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+
+    - name: Install dependencies (if needed)
+      run: |
+        npm install -g live-server
+        # 添加其他需要的依赖
+
+    - name: Build project
+      run: |
+        mkdir -p docs
+        cp -r src/* docs/
+        # 如果使用构建工具，在此处添加构建命令
+        echo "Build completed"
+
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v3
+      if: github.ref == 'refs/heads/main'
