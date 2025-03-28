@@ -1,0 +1,33 @@
+/* TV 基础样式 */
+.tv-container {
+    background: #181818;
+    font-size: 1.5rem; /* 电视端放大字体 */
+}
+
+.tv-nav {
+    display: flex;
+    padding: 2rem;
+    gap: 3rem;
+}
+
+.tv-nav .nav-item {
+    padding: 1.5rem 3rem;
+    border-radius: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+/* 焦点状态 */
+.tv-nav .nav-item:focus,
+.tv-card:focus {
+    transform: scale(1.1);
+    outline: 3px solid #00a1d6;
+    outline-offset: 2px;
+}
+
+/* 电视网格布局 */
+.tv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
